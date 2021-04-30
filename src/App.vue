@@ -1,6 +1,6 @@
 
 <template>
-  <div id="app" v-bind:class="typeof weather.main != 'undefined' ? weather.weather[0].main : ''">
+  <div id="app" v-bind:class="typeof weather.main != 'undefined' ? weather.weather[0].main : temp">
       <main>
          <input type="text" class="InputField" v-model="location" @keyup.enter="getData" placeholder="enter the city..."/>
          <transition name="slide" mode="out-in">
@@ -28,6 +28,7 @@ interface State {
   weather: Record<string, unknown>
   location: string
   date: string
+  temp: ''
 }
 
 export default defineComponent({
@@ -36,7 +37,8 @@ export default defineComponent({
     return {
       weather: {},
       location: '',
-      date: ''
+      date: '',
+      temp: ''
     }
   },
   methods: {
@@ -45,7 +47,7 @@ export default defineComponent({
         method: 'GET', headers: { 'x-rapidapi-key': '9d6246ee99msh91c7f8b0a96db33p12ea70jsnfb67dfad8ffa', 'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com' }
       })
         .then(response => response.json())
-        .then(dat => { this.weather = dat.list[0] })
+        .then(dat => { this.weather = dat.list[0]; this.temp = dat.list[0].weather.weather[0].main })
         .catch(err => { console.error(err) })
     },
     getDate () : string {
