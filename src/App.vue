@@ -126,7 +126,7 @@ p {
 }
 
 .InputField {
-  margin: 30px 0 90px;
+  margin: 3% 0 6%;
   width: 80%;
   font-size: 2em;
   border-radius: 20px 0;
@@ -153,29 +153,29 @@ p {
 }
 
 .temp {
-  font-size: 15em;
+  font-size: 15vw;
   font-weight: 600;
-  line-height: 200px;
+  line-height: 80%;
   text-shadow: 5px 3px 5px rgba(0, 0, 0, 0.6);
 }
 
 .location {
-  font-size: 5.5em;
-  margin:18px 0 0 ;
+  font-size: 5.5vw;
+  margin:2% 0 0 ;
   font-style: italic;
   font-weight: 500;
   text-shadow: 5px 3px 5px rgba(0, 0, 0, 0.6);
 }
 
 .date {
-  font-size: 2.5em;
-  margin-top: 20px;
+  font-size: 2.5vw;
+  margin-top: 3%;
   text-shadow: 5px 3px 5px rgba(0, 0, 0, 0.6);
 }
 
 .sky {
   font-style: italic ;
-  font-size: 2em;
+  font-size: 2vw;
   text-shadow: 5px 3px 5px rgba(0, 0, 0, 0.6);
 }
 
