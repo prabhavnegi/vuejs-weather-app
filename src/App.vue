@@ -47,7 +47,7 @@ export default defineComponent({
         method: 'GET', headers: { 'x-rapidapi-key': '9d6246ee99msh91c7f8b0a96db33p12ea70jsnfb67dfad8ffa', 'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com' }
       })
         .then(response => response.json())
-        .then(dat => { this.weather = dat.list[0]; this.temp = dat.list[0].weather.weather[0].main })
+        .then(dat => { this.weather = dat.list[0]; this.temp = dat.list[0].weather[0].main })
         .catch(err => { console.error(err) })
     },
     getDate () : string {
