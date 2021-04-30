@@ -1,6 +1,6 @@
 
 <template>
-  <div id="app" v-bind:class="typeof weather.main != 'undefined' ? weather.weather[0].main : temp">
+  <div id="app" :style="{backgroundImage: 'url(' + require('./assets/' + img + '.jpg') + ')'}">
       <main>
          <input type="text" class="InputField" v-model="location" @keyup.enter="getData" placeholder="enter the city..."/>
          <transition name="slide" mode="out-in">
@@ -28,7 +28,9 @@ interface State {
   weather: Record<string, unknown>
   location: string
   date: string
-  temp: ''
+  img: string
+  weatherType : string
+  weatherType2 : string
 }
 
 export default defineComponent({
@@ -38,7 +40,9 @@ export default defineComponent({
       weather: {},
       location: '',
       date: '',
-      temp: ''
+      img: 'main',
+      weatherType: 'Dust Smoke Fog Mist Haze',
+      weatherType2: 'Squall Tornado'
     }
   },
   methods: {
@@ -47,7 +51,7 @@ export default defineComponent({
         method: 'GET', headers: { 'x-rapidapi-key': '9d6246ee99msh91c7f8b0a96db33p12ea70jsnfb67dfad8ffa', 'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com' }
       })
         .then(response => response.json())
-        .then(dat => { this.weather = dat.list[0]; this.temp = dat.list[0].weather[0].main })
+        .then(dat => { this.weather = dat.list[0]; this.imgSetter(dat.list[0].weather[0].main) })
         .catch(err => { console.error(err) })
     },
     getDate () : string {
@@ -55,6 +59,20 @@ export default defineComponent({
       const d = new Date(Date.now())
       options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
       return d.toLocaleDateString(undefined, options)
+    },
+    imgSetter (desc:'') : void {
+      console.log(desc)
+      if (desc === '') {
+        console.log('empty')
+      } else if (this.weatherType.search(desc) > -1) {
+        this.img = 'Mist'
+      } else if (this.weatherType2.search(desc) > -1) {
+        this.img = 'Storm'
+      } else if (desc && desc === 'Sand') {
+        this.img = 'Sand'
+      } else {
+        this.img = desc
+      }
     }
   }
 })
@@ -74,39 +92,11 @@ body {
 input, textarea, select { font-family: inherit; }
 
  #app {
-   background-image: url('./assets/main.jpg');
    background-size: cover;
    background-position: bottom;
-   transition: 1s;
+   transition: .5s;
    position: relative;
- }
-
- #app.Clouds {
-   background-image: url('./assets/Cloud.jpg');
- }
- #app.Clear {
-   background-image: url('./assets/Clear.jpg');
- }
-#app.Snow {
-   background-image: url('./assets/Snow.jpg');
- }
-#app.Thunderstorm {
-   background-image: url('./assets/Thunderstorm.jpg');
- }
- #app.Rain {
-   background-image: url('./assets/Rain.jpg');
- }
-#app.Drizzle {
-   background-image: url('./assets/Drizzle.jpg');
- }
-#app.Haze, #app.Mist, #app.Fog, #app.Dust, #app.Smoke {
-   background-image: url('./assets/Mist.jpg');
- }
-#app.Tornado, #app.Squall {
-  background-image: url('./assets/Storm.jpg');
-}
-#app.Sand{
-   background-image: url('./assets/Sand.jpg');
+   background-color: black;
  }
 
 main {
