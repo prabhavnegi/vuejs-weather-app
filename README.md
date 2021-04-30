@@ -1,24 +1,12 @@
 # weather-app
+This is a single page weather app made with **Vue js**
 
-## Project setup
-```
-npm install
-```
+## About
+🟢 This is my first vue js app and which I made while learning the vue js framework.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+🟢  It uses a real time weather api (openweather) to get temperature and weather condition of the desired city.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+🟢 The background image changes according to the weather description
 
-### Lints and fixes files
-```
-npm run lint
-```
+🟢 It uses basic vue transitions and vue's various other features.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
