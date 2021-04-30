@@ -51,7 +51,7 @@ export default defineComponent({
         .catch(err => { console.error(err) })
     },
     getDate () : string {
-      let options: Intl.DateTimeFormatOptions
+      let options: Intl.DateTimeFormatOptions = {}
       const d = new Date(Date.now())
       options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
       return d.toLocaleDateString(undefined, options)
