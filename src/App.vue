@@ -9,14 +9,14 @@
               <div class="desc">
                   <p class="sky">{{weather.weather[0].description}}</p>
               </div>
-              <p class="location"> {{weather.name}},{{weather.sys.country}}</p>
+              <p class="location"> {{weather.name}}, {{weather.sys.country}}</p>
               <p class="date">{{getDate()}}</p>
             </div>
          </transition>
       </main>
        <span class="footer">
               <p>Made by Prabhav Negi</p>
-              <a href="https://github.com/prabhavnegi">Github Repo</a>
+              <a href="https://github.com/prabhavnegi/vuejs-weather-app">Github Repo</a>
         </span>
   </div>
 </template>
@@ -51,14 +51,10 @@ export default defineComponent({
         .catch(err => { console.error(err) })
     },
     getDate () : string {
-      const d = new Date()
-      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-      const day = days[d.getDay()]
-      const date = d.getDate()
-      const month = months[d.getMonth()]
-      const year = d.getFullYear()
-      return `${day} ${date} ${month} ${year}`
+      let options: Intl.DateTimeFormatOptions
+      const d = new Date(Date.now())
+      options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+      return d.toLocaleDateString(undefined, options)
     }
   }
 })
@@ -74,6 +70,9 @@ export default defineComponent({
 body {
   font-family: montserrat;
 }
+
+input, textarea, select { font-family: inherit; }
+
  #app {
    background-image: url('./assets/main.jpg');
    background-size: cover;
@@ -163,7 +162,7 @@ p {
   font-size: 5.5vw;
   margin:2% 0 0 ;
   font-style: italic;
-  font-weight: 500;
+  font-weight: 600;
   text-shadow: 5px 3px 5px rgba(0, 0, 0, 0.6);
 }
 
